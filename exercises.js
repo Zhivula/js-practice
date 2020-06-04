@@ -213,3 +213,54 @@ let protoMoney = {
 let bigMoney = Object.create(protoMoney);
 bigMoney.type = "Bitcoin";
 bigMoney.getmoney(10);
+//================================================================
+//Конструкторы
+//================================================================
+function Coin(type){
+	this.type = type;
+}
+Coin.prototype.get = function (value) {
+	console.log("Была получена сумма: " + value + " В валюте " + this.type);
+};
+let xLM = new Coin("cryptoMoney");
+let dol = new Coin("money");
+console.log(dol.type);
+dol.get(10);
+Coin.prototype.line = 50;
+console.log(dol.line);
+dol.line = 60;
+console.log(dol.line);
+console.log(xLM.line);
+console.log(Coin.prototype.line);
+console.log(Array.prototype.toString == Object.prototype.toString);
+console.log([1,2,3,4,5].toString());
+console.log(Object.prototype.toString.call([1,2,3]));
+//====================================================================
+//Нежелательное взаимодействие прототипов
+//====================================================================
+map = {};
+function store(event, value) {
+	map[event] = value;
+}
+store("Add",10);
+store("Delete", 5);
+Object.prototype.newValue = "hey, new value!";
+for(let name in map) console.log(name);
+console.log("newValue" in map);
+console.log("toString" in map);
+Object.defineProperty(Object.prototype, "hiddenNonsense",{
+	enumerable:false,value:"ky"
+});
+for(let name in map) console.log(name);
+console.log(map.hiddenNonsense);
+console.log(map.hasOwnProperty("toString"));//Он говорит, является ли свойство свойством объекта, без обглядки на прототипы. 
+console.log("Можно использовать это: ")
+for(let i in map){
+	if(map.hasOwnProperty(i)){
+		console.log(i);
+	}
+}
+map = Object.create(null);//Теперь не нужна приблуда "hasOwnProperty"
+map["onion"] = 10;
+console.log("toString" in map);
+console.log("onion" in map);
