@@ -92,9 +92,25 @@ function dataTable(data){
 	});
 	let body = data.map(function(row){
 		return keys.map(function(name){
-			return new TextCell(String(row[name]));
+			let value = row[name];
+			if(typeof value == "number")return new RTextCell(String(value));
+			else return new TextCell(String(value));
+			
 		});
 	});
 	return [headers].concat(body);
 }
 console.log(drawTable(dataTable(rows)));
+
+function RTextCell(text){
+	TextCell.call(this,text);
+}
+RTextCell.prototype = Object.create(TextCell.prototype);
+RTextCell.prototype.draw = function(width, height){
+	let result = [];
+	for(let i = 0; i < height; i++){
+		let line = this.text[i] || "";
+		result.push(repeat(" ", width - line.length) + line);
+	}
+	return result;
+};
