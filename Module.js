@@ -55,3 +55,14 @@ define([], function() {
     number: function(name) { return names.indexOf(name); }
   };
 });*/
+//Называния месяцев=====================================
+console.log("названия месяцев");
+let month = function(){
+	let names = ["Янв", "Фев", "Март", "Апр", "Май", "Июнь", "Июль","Авг", "Сен","Окт","Ноябрь","Декабрь"];
+	return {
+		name: function(number){return names[number];},
+		number: function(name){return names.indexOf(name);}
+	};
+}();
+console.log(month.name(2));
+console.log(month.number("Декабрь"));
