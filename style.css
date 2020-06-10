@@ -1,0 +1,21 @@
+header{
+	background: blue,
+	color: white;
+}
+header > nav > ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+nav a{
+	color:white;
+	background: red;
+	text-decoration: none;
+	transition: .5s linear;
+}
+a:hover{
+	background: blue;
+}
+nav li{
+	display: inline;
+}
