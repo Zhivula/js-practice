@@ -19,3 +19,36 @@ a:hover{
 nav li{
 	display: inline;
 }
+.dot{
+	height: 8px;
+	width: 8px;
+	background: blue;
+	position: absolute;
+}
+#box{
+	background: orange;
+	width: 60px;
+	height: 20px;
+}
+.progress {
+   border: 1px solid blue;
+   width: 150px;
+   position: fixed;
+   top: 10px;
+   right: 10px;
+}
+.progress > div {
+    height: 12px;
+    background: blue;
+    width: 0%;
+}
+body {
+    height: 2000px;
+}
+#divMouseMove{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background: teal;
+}
