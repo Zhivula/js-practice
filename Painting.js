@@ -73,8 +73,82 @@ canvas.fillText("Это текст", 10,50);
 
 let img = document.createElement("img");
 img.src = "cat.jpg";
-img.width = 50;
-img.addEventListener("load", function() {
+/*img.addEventListener("load", function() {
  for (let x = 10; x < 50; x += 25)
    canvas.drawImage(img, x, 10);
+});*/
+function flipHorizontally(context, around) {
+  context.translate(around, 0);
+  context.scale(-1, 1);
+  context.translate(-around, 0);
+}
+let spriteW = 200, spriteH = 200;
+img.addEventListener("load", function() {
+ flipHorizontally(canvas, 100 + spriteW / 2);
+ canvas.drawImage(img, 0, 0, spriteW, spriteH,
+              100, 0, spriteW, spriteH);
 });
+function branch(length, angle, scale) {
+	canvas.fillRect(0, 0, 1, length);
+	if (length < 8) return;
+	canvas.save();
+	canvas.translate(0, length);
+	canvas.rotate(-angle);
+	branch(length * scale, angle, scale);
+	canvas.rotate(2 * angle);
+	branch(length * scale, angle, scale);
+	canvas.restore();
+}
+canvas.translate(300, 0);
+branch(50, 0.5, 0.8);
+//Exercises========================================
+let canv = document.getElementById("canv").getContext("2d");
+function fig(startX, startY, height, top, bottom) {
+	canv.beginPath();
+	canv.moveTo(startX, startY);
+	let x1 = startX + (bottom-top)/2;
+	let y1 = startY-height;
+	canv.lineTo(x1, y1);
+	let x2 = x1+top;
+	canv.lineTo(x2,y1);
+	canv.lineTo(x2+(bottom-top)/2,y1+height);
+	canv.lineTo(startX,startY);
+	canv.stroke();
+}
+//fig(10,100,50,50,120);
+function rc(startX, startY, size) {
+	canv.fillStyle = "red";
+	canv.translate(size,0);
+	canv.rotate(45);
+	canv.fillRect(startX,startY, size,size);
+}
+//rc(10,10,50);
+function le(startX, startY, length, height, count) {
+	canv.beginPath();
+	canv.moveTo(startX,startY);
+	for(let i = 0; i < count; i++){
+		canv.lineTo(startX+length,startY+(height/2));
+		canv.lineTo(startX, startY+height);
+		startY += height;
+	}
+	canv.stroke();
+}
+//le(10,10,50,10,7);
+function st(startX, startY, r) {
+	canv.beginPath();
+	canv.moveTo(startX-r,startY);
+	let x1 = startX-r;
+	let y1 = startY;
+	let x2, y2;
+	let angle = 45;
+	for(let i = 0; i < 8; i++){
+		x2 = x1 + r - r * Math.sin((angle*Math.PI)/180);
+		y2 = y1 - r * Math.sin((angle*Math.PI)/180);
+		canv.bezierCurveTo(x1, y1, startX, startY, x2, y2);
+		x1=x2;
+		y1=y2;
+		angle+=45;
+	}
+	canv.stroke();
+}
+st(100,100,50);
