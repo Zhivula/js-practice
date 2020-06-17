@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>My first page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#">Главная</a></li>
+				<li><a href="paint.html">Карта</a></li>
+				<li><a href="Forms.html">Формы</a></li>
+			</ul>
+		</nav>
+	</header>
+	<p><input type="text" value="abc" tabindex=1> (text)</p>
+	<p><input type="password" value="abc" autofocus tabindex=2> (password)</p>
+	<p><input type="checkbox" checked> (checkbox)</p>
+	<p><input type="radio" value="A" name="choice">
+	   <input type="radio" value="B" name="choice" checked>
+	   <input type="radio" value="C" name="choice"> (radio)</p>
+	<p><input type="file" checked> (file)</p>
+	<select>
+	  <option>Блины</option>
+	  <option>Запеканка</option>
+	  <option>Мороженка </option>
+	</select>
+	<button>У меня всё хорошо</button>
+	<button disabled>Я в отключке</button>
+	<input type="text" id="inputLen"> length: <span id="length">0</span>
+	<select multiple class="select">
+  <option value="1">0001</option>
+  <option value="2">0010</option>
+  <option value="4">0100</option>
+  <option value="8">1000</option>
+</select> = <span id="output">0</span>
+<textarea id="codeT"></textarea>
+<button id="buttonS">Поехали!</button>
+<pre id="outputt"></pre>
+	<script type="text/javascript" src="Forms.js"></script>
+</body>
+</html>
